@@ -12,13 +12,15 @@ module.exports = screens = (grunt) ->
 
     densities = [ 'ldpi', 'mdpi', 'hdpi', 'xhdpi' ]
 
-    for density of densities
+    for densityIndex of densities
+      density = densities[densityIndex]
       portrait = screens?.android?[density]
       landscape = screens?.android?[density + 'Land']
 
       if portrait
         bestPortrait = portrait
         grunt.file.copy portrait, path.join(res, 'drawable-' + density, 'screen.png'), encoding: null
+        grunt.file.copy portrait, path.join(res, 'drawable-port-' + density, 'screen.png'), encoding: null
 
       if landscape
         bestLandscape = landscape
